@@ -5,6 +5,11 @@ import com.example.pidev.DAO.Repositories.UserRepositories;
 import com.example.pidev.Service.Interface.IUser;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import lombok.AllArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Service
@@ -28,7 +33,9 @@ public class UserService implements IUser {
 
     @Override
     public User SelectById(int id) {
+        if(userRepositories.findById(id).isPresent())
         return userRepositories.findById(id).get();
+        return null;
     }
 
     @Override
