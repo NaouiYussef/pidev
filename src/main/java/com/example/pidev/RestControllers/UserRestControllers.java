@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-
 public class UserRestControllers {
     private IUser iUser;
     @PostMapping("/ajouteruser")
