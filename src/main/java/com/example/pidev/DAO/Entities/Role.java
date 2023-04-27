@@ -1,5 +1,7 @@
 package com.example.pidev.DAO.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,9 +19,11 @@ import java.util.List;
 public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idRole;
+    int id;
     String name;
     @OneToMany (mappedBy = "roles")
+
+    @JsonIgnore
     List<User> userList;
 
 }

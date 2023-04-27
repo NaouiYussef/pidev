@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserRepositories extends JpaRepository<User,Integer> {
     @Override
     User getById(Integer integer);
+    User findByMail(String s);
 }

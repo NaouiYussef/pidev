@@ -1,12 +1,17 @@
 package com.example.pidev.DAO.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.lang.Nullable;
 import org.springframework.transaction.event.TransactionalEventListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -15,6 +20,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +35,20 @@ public class User  implements Serializable {
     Date dateNaissance;
     @ManyToOne
     Role roles;
+    @Transient
+    @Nullable
+    String roleName;
+    public String getRoleName() {
+        return (roles != null) ? roles.getName() : null;
+    }
+    public Role getRole() {
+        return roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
 
 }
+
