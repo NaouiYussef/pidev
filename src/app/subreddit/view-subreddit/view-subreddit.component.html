@@ -1,0 +1,35 @@
+<br>
+<div>
+    <button  class="btn btn-primary tooltips"  style="color: rgb(255, 255, 255); text-align: center;" data-placement="top" data-original-title="Add"
+    routerLink="/admin/create-subreddit">Add Subreddit</button>
+</div>
+
+<div class="card-content collapse show">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Number of Posts</th>
+                      </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of subreddits">
+                        <td>{{p.id}}</td>
+                        <td>{{ p.name }}</td>                     
+                        <td>{{ p.description }}</td>
+                        <td>{{ p.numberOfPosts }}</td>
+                        <td><button (click)="updateSubreddit(p.id)"  class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit" >Edit</button></td>
+                        <td><button (click)="deleteSubreddit(p.id)" class="btn btn-secondary  tooltips" data-placement="top" data-original-title="Delete">Delete</button></td>
+                    </tr>   
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+ 

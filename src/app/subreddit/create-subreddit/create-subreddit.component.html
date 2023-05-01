@@ -1,0 +1,23 @@
+
+
+<br> 
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h2>Create Subreddit</h2>
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="postName">Subreddit Name :</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="subredditModel.name" name="name" placeholder="Enter Subreddit name">
+          </div>   
+          <div class="form-group">
+            <label for="url">URL:</label>
+            <input type="text" class="form-control" id="Description" [(ngModel)]="subredditModel.description" name="Description" placeholder="Enter Description">
+          </div>
+         
+          <button type="submit" class="btn btn-primary" >Create Subreddit</button>
+          <button (click)="discardPost()" type="button" class="btn btn-secondary float-right">Discard</button>
+        </form>
+      </div>
+    </div>
+  </div>

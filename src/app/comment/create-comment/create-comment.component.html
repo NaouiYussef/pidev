@@ -1,0 +1,30 @@
+
+
+<br> 
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h2>Create Comment</h2>
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="postName">Post Name:</label>
+            <input type="text" class="form-control" id="text" [(ngModel)]="commentPayload.text" name="text" placeholder="Enter text">
+          </div>
+      
+          
+        
+          
+          
+          <label for="url">Post:</label>
+          <select class="form-control" style="margin-top: 10px" >
+            <option value="" selected disabled>Select Post</option>
+            <option *ngFor="let post of postPayload">{{post.postName}}</option>
+          </select>
+          <br>
+          
+          <button type="submit" class="btn btn-primary" >Create Comment</button>
+          <button (click)="discardPost()" type="button" class="btn btn-secondary float-right">Discard</button>
+        </form>
+      </div>
+    </div>
+  </div>

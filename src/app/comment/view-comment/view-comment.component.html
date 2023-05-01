@@ -1,0 +1,40 @@
+<br>
+<div>
+    <button  class="btn btn-primary tooltips"  style="color: rgb(255, 255, 255); text-align: center;" data-placement="top" data-original-title="Add"
+    routerLink="/admin/create-comment">Add Comment</button>
+</div>
+
+<div class="card-content collapse show">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date of Creation</th>
+                        <th>Text</th>
+                        <th>#PostID</th>
+                        <th>Post Name</th>
+                        <th>Username</th>
+                      </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of comments">
+                        <td>{{p.id}}</td>
+                        <td>{{ p.duration  }}</td>                     
+                        <td>{{ p.text }}</td>
+                        <td>{{ p.postId }}</td>
+                        <td>{{ p.postName }}</td>
+                        <td>{{ p.userName }}</td>
+                        <td><button (click)="deleteComment(p.id)" class="btn btn-secondary  tooltips" data-placement="top" data-original-title="Delete">Delete</button></td>
+                        
+                      
+                    </tr>   
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+ 

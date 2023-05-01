@@ -1,0 +1,23 @@
+
+
+<br> 
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h2>Update Previous Subreddit</h2>
+        <form (ngSubmit)="OnSubmit()">
+          <div class="form-group">
+            <label for="postName">Subreddit Name :</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="subreddit.name" name="name" placeholder="Enter Subreddit name">
+          </div>   
+          <div class="form-group">
+            <label for="url">Description:</label>
+            <input type="text" class="form-control" id="description" [(ngModel)]="subreddit.description" name="url" placeholder="Enter Description">
+          </div>
+         
+          <button type="submit" class="btn btn-primary" >Update Subreddit</button>
+          <button (click)="discardPost()" type="button" class="btn btn-secondary float-right">Discard</button>
+        </form>
+      </div>
+    </div>
+  </div>

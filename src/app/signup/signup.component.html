@@ -1,0 +1,189 @@
+<!-- <div class="container-fluid position-relative p-0">
+
+    <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Sign up</h1>
+
+            </div>
+        </div>
+    </div>
+
+     Contact Start 
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h5 class="fw-bold text-primary text-uppercase">Sign up</h5>
+                <h1 class="mb-0">Please complete the following fields </h1>
+            </div>
+        </div>
+        <div style="margin-left: 350px;">
+            <div class="col-lg-8 wow slideInUp " data-wow-delay="0.3s">
+                <form (ngSubmit)="saveUser()" #form="ngForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control border-0 bg-light px-4" name="username"
+                                #username="ngModel" [(ngModel)]="user.username" placeholder="Your username" required
+                                minlength="3" style="height: 55px;">
+                            <br>
+                            <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
+                                <div *ngIf="username.errors?.['required']">Username is required</div>
+                                <div *ngIf="username.errors?.['minlength']">Username must have 3 caracters </div>
+                            </div>
+                        </div>
+                       
+                        <form [formGroup]="passwordForm">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <input type="password" formControlName="password" id="password"
+                                        class="form-control border-0 bg-light px-4" name="password"
+                                        [(ngModel)]="user.password" placeholder="Your Password" required>
+
+                                    <br>
+                                    <div class="alert alert-danger"
+                                        *ngIf="passwordForm.hasError('mismatch') && (passwordForm.dirty || passwordForm.touched)">
+                                        Passwords do not match.
+
+                                    </div>
+                                    <div *ngIf="passwordForm.hasError('required') && passwordForm.touched">
+                                        Passwords is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <input type="password" class="form-control border-0 bg-light px-4"
+                                        name="verifpassword" formControlName="verifpassword" id="verifpassword"
+                                        [(ngModel)]="user.verifPassword" placeholder="Confirm Your Password" required>
+
+                                    <br>
+                                    <div class="alert alert-danger"
+                                        *ngIf="passwordForm.hasError('mismatch') && (passwordForm.dirty || passwordForm.touched)">
+                                        Passwords do not match.
+                                    </div>
+                                    <div class="alert alert-danger"
+                                        *ngIf="passwordForm.hasError('required') && passwordForm.touched">
+                                        Passwords is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                     
+                        <div class="col-6">
+                            <input type="email" class="form-control border-0 bg-light px-4" name="email"
+                                #email="ngModel" [(ngModel)]="user.mail" style="height: 55px;" placeholder="Your Email"
+                               required pattern="[a-zA-Z][a-zA-Z0-9.-_]+@[a-zA-Z]+\.[a-zA-Z]{2,4}">
+                            <br>
+                            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                                <div *ngIf="email.errors?.['required']">Email is required</div>
+                                <div *ngIf="email.errors?.['pattern']">Email invalid </div>
+                            </div>
+                        </div>
+                        <select [(ngModel)]="selectedRole" name="role" class="form-control" id="role" required>
+                            <option value="" disabled selected>Select a role</option>
+                            <option *ngFor="let role of roles" [ngValue]="{ id: role.id, name: role.name }" [hidden]="role.name === 'admin'">{{ role.name }}</option>
+                          </select>
+                          
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit" [disabled]="form.invalid">Sign
+                                up</button>
+                        </div>
+                        <div>
+                            <h6>Already I have an account <a routerLink="/signin">Sign-in</a></h6>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>-->
+<div class='bold-line'></div>
+<div class='container'>
+  <div class='window'>
+    <div class='overlay'></div>
+    <div class='content'>
+      <div class='welcome'>Hello There!</div>
+      <div class='subtitle'><br>We're almost done. Before using our services you need to create an account.</div> 
+      <div class='input-fields'>
+        <form (ngSubmit)="saveUser()" #form="ngForm">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" class='input-line full-width' name="username"
+                        #username="ngModel" [(ngModel)]="user.username" placeholder="Your username" required
+                        minlength="3" style="height: 55px;">
+                    <br>
+                    <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
+                        <div *ngIf="username.errors?.['required']">Username is required</div>
+                        <div *ngIf="username.errors?.['minlength']">Username must have 3 caracters </div>
+                    </div>
+                </div>
+               
+                <form [formGroup]="passwordForm">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <input type="password" formControlName="password" id="password"
+                            class='input-line full-width' name="password"
+                                [(ngModel)]="user.password" placeholder="Your Password" required>
+
+                            <br>
+                            <div class="alert alert-danger"
+                                *ngIf="passwordForm.hasError('mismatch') && (passwordForm.dirty || passwordForm.touched)">
+                                Passwords do not match.
+
+                            </div>
+                            <div *ngIf="passwordForm.hasError('required') && passwordForm.touched">
+                                Passwords is required.
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <input type="password" class='input-line full-width'
+                                name="verifpassword" formControlName="verifpassword" id="verifpassword"
+                                [(ngModel)]="user.verifPassword" placeholder="Confirm Your Password" required>
+
+                            <br>
+                            <div class="alert alert-danger"
+                                *ngIf="passwordForm.hasError('mismatch') && (passwordForm.dirty || passwordForm.touched)">
+                                Passwords do not match.
+                            </div>
+                            <div class="alert alert-danger"
+                                *ngIf="passwordForm.hasError('required') && passwordForm.touched">
+                                Passwords is required.
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+             
+                <div class="col-6">
+                    <input type="email" class='input-line full-width' name="email"
+                        #email="ngModel" [(ngModel)]="user.mail" style="height: 55px;" placeholder="Your Email"
+                       required pattern="[a-zA-Z][a-zA-Z0-9.-_]+@[a-zA-Z]+\.[a-zA-Z]{2,4}">
+                    <br>
+                    <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                        <div *ngIf="email.errors?.['required']">Email is required</div>
+                        <div *ngIf="email.errors?.['pattern']">Email invalid </div>
+                    </div>
+                </div>
+                <select [(ngModel)]="selectedRole" name="role" class="form-control"  id="role" required>
+                    <option value="" disabled selected>Select a role</option>
+                    <option *ngFor="let role of roles" [ngValue]="{ id: role.id, name: role.name }" [hidden]="role.name === 'admin'">{{ role.name }}</option>
+                  </select>
+                  
+                <div class="col-12">
+                    <button class='ghost-round full-width' type="submit" [disabled]="form.invalid"><a routerLink="/signin">Sign
+                        up</a> </button>
+                </div>
+                <div>
+                    <h6>Already I have an account <a routerLink="/signin">Sign-in</a></h6>
+
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

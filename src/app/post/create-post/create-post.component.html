@@ -1,0 +1,40 @@
+
+
+  <br> 
+  <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <h2>Create Post</h2>
+          <form [formGroup]="createPostForm" (ngSubmit)="createPost()">
+            <div class="form-group">
+              <label for="postName">PostName:</label>
+              <input type="text" [formControlName]="'postName'" class="form-control" style="margin-top: 5px"
+              placeholder="Title">
+            </div>
+        
+            
+            <label for="url">Subreddits:</label>
+            <select class="form-control" style="margin-top: 10px" [formControlName]="'subredditName'">
+              <option value="" selected disabled>Select Subreddit</option>
+              <option *ngFor="let subreddit of subreddits">{{subreddit.name}}</option>
+            </select>
+            
+            
+            
+          <br> 
+            
+            <div class="form-group">
+              <label for="url">URL:</label>
+              <input type="text"class="form-control" [formControlName]="'url'" style="margin-top: 5px" placeholder="URL">
+            </div>
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea class="form-control" id="description" [(ngModel)]="postPayload.description" name="description" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" >Create Post</button>
+            <button (click)="discardPost()" type="button" class="btn btn-secondary float-right">Discard</button>
+
+          </form>
+        </div>
+      </div>
+    </div>

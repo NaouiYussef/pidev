@@ -1,0 +1,45 @@
+<br>
+<div>
+    <button  class="btn btn-primary tooltips"  style="color: rgb(255, 255, 255); text-align: center;" data-placement="top" data-original-title="Add"
+    routerLink="/admin/create-post">Add Post</button>
+</div>
+
+<div class="card-content collapse show">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Post Name</th>
+                        <th>Description</th>
+                        <th>Vote Count</th>
+                        <th>Subreddit Name</th>
+                        <th>Comment Count</th>
+                        <th>Duration</th>
+                        <th>Username</th>
+                      </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of posts">
+                        <td>{{p.id}}</td>
+                        <td>{{ p.postName }}</td>                     
+                        <td>{{ p.description }}</td>
+                        <td>{{ p.voteCount }}</td>
+                        <td>{{ p.subredditName }}</td>
+                        <td>{{ p.commentCount }}</td>
+                        <td>{{ p.duration }}</td>
+                        <td>{{p.userName}}</td>
+                        <td><button (click)="updatePost(p.id)"  class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit" >Edit</button></td>
+                        <td><button (click)="deletePost(p.id)" class="btn btn-secondary  tooltips" data-placement="top" data-original-title="Delete">Delete</button></td>
+                        
+                      
+                    </tr>   
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+ 
