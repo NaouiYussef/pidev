@@ -1,0 +1,81 @@
+<div class="main-content">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-plain">
+         <br><br><br><br><br>
+          <h2 class="centered-heading">Search products</h2>
+          <form>
+            <input type="search" (ngModelChange)="searchProds(key.value)" #key="ngModel" ngModel
+                   name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search prod..." required>
+          </form>
+          <hr>
+          <h2 class="centered-heading"> filter products by price</h2>
+          <div class="price-filter">
+            <input [(ngModel)]="minPrice" type="number" placeholder="Min Price" class="filter-input">
+            <input [(ngModel)]="maxPrice" type="number" placeholder="Max Price" class="filter-input">
+            <button (click)="filterByPrice(minPrice, maxPrice)" class="filter-button">Filter</button>
+          </div>
+
+          <br><br>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Region</th>
+                <th>Category</th>
+                <th>Action</th>
+                </thead>
+                <tbody>
+
+                <tr *ngFor="let product of products | slice:(currentPage - 1) * pageSize : (currentPage - 1) * pageSize + pageSize">
+                  <td>{{ product.productName}}</td>
+                  <td>{{ product.prix}}</td>
+                  <td>{{ product.region}}</td>
+                  <td>{{ product.categoryp.categoryName}}</td>
+                  <td>
+                    <button class="btn btn-primary" (click)="deleteProduct(product)">Delete Product</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-primary" (click)="UpdateProduct(product)">Update Product</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-primary" (click)="sendData(product.id)">Show</button>
+                  </td>
+                </tr>
+
+                </tbody>
+
+
+              </table>
+              <!-- Display products based on current page and page size -->
+
+
+              <!-- Display pagination controls -->
+              <ul class="pagination-container">
+                <li class="page-item" [class.disabled]="currentPage == 1">
+                  <a class="page-link" (click)="currentPage = 1">First</a>
+                </li>
+                <li class="page-item" [class.disabled]="currentPage == 1">
+                  <a class="page-link" (click)="currentPage = currentPage - 1">Previous</a>
+                </li>
+                <li class="page-item" [class.disabled]="currentPage == totalPages()">
+                  <a class="page-link" (click)="currentPage = currentPage + 1">Next</a>
+                </li>
+                <li class="page-item" [class.disabled]="currentPage == totalPages()">
+                  <a class="page-link" (click)="currentPage = totalPages()">Last</a>
+                </li>
+              </ul>
+
+            </div>
+            <button class="btn btn-info" (click)="redirectToNewProduct()">new</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
