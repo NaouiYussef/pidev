@@ -36,19 +36,19 @@ private ISecurity iSecurity;
 
     }
 
-    @GetMapping("/user/afficherUserbyID/{id}")
+    @GetMapping("/admin/afficherUserbyID/{id}")
     public User AfficherByID(@PathVariable int id)
     {
         return iUser.SelectById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/admin/all")
     public List<User> AfficherUsers()
     {
 
         return iUser.selectAll();
     }
-    @DeleteMapping("/user/delete/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public void delete(@PathVariable int id)
     {
         iUser.deleteById(id);
@@ -58,5 +58,4 @@ private ISecurity iSecurity;
     {
         return iUser.getUserByEmail( iSecurity.getCurrentUserName());
     }
-
 }
