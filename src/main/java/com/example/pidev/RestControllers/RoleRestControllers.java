@@ -19,7 +19,7 @@ public class RoleRestControllers {
     public void ajouter (@RequestBody Role role)
     {
         iRole.add(role);}
-    @GetMapping("/admin/allrole")
+    @GetMapping("/user/allrole")
     public List<Role> AfficherRoles()
     {
         return iRole.selectAll();
