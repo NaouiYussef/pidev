@@ -38,6 +38,10 @@ public class User  implements Serializable {
     @Transient
     @Nullable
     String roleName;
+    private String verificationCode;
+    private String PasswordToken;
+    private Boolean locked = false;
+    private Boolean enabled = false;
     public String getRoleName() {
         return (roles != null) ? roles.getName() : null;
     }
