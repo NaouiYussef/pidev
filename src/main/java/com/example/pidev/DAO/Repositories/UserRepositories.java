@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface UserRepositories extends JpaRepository<User,Integer> {
     @Override
     User getById(Integer integer);
-   // User findByMail(String s);
+    // User findByMail(String s);
     @Transactional
     @Modifying
     @Query("UPDATE User a " +
@@ -27,6 +27,6 @@ public interface UserRepositories extends JpaRepository<User,Integer> {
     @Query("SELECT u FROM User u WHERE u.verificationCode = ?1")
     public Optional<User> findByVerificationCode(String code);
 
-
+    Optional<User> findByUsername(String username);
     boolean existsByMail(String mail);
 }

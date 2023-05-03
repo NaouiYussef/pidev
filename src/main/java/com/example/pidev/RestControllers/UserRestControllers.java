@@ -28,7 +28,7 @@ public class UserRestControllers {
     public final static String BAD_REQUEST = "BAD_REQUEST";
     public final static String NOT_FOUND = "NOT_FOUND";
 
-private ISecurity iSecurity;
+    private ISecurity iSecurity;
 
     @PostMapping("/user/add")
     public void ajouter (@RequestBody User user)
@@ -69,7 +69,7 @@ private ISecurity iSecurity;
         return iUser.getUserByEmail( iSecurity.getCurrentUserName());
     }
 
-                @PostMapping("/oauth/forgetPassword")
+    @PostMapping("/oauth/forgetPassword")
 
     public ResponseEntity<Object> forgetPassword(@RequestBody UsersDTO usersDTO) throws UnsupportedEncodingException, MessagingException {
 
