@@ -86,10 +86,6 @@ public class UserRestControllers {
         System.out.println(token+ "  "+ userReq.getPassword());
         userService.verifyPassToken(token,userReq.getPassword());
         return new ResponseEntity<>(FOUND, HttpStatus.OK);
-
-
-
-
-
     }
+
 }

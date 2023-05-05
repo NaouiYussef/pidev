@@ -1,9 +1,13 @@
 package com.example.pidev.Service.Classe;
 
+import com.example.pidev.DAO.Entities.RestPasswordToken;
 import com.example.pidev.DAO.Entities.User;
+import com.example.pidev.DAO.Repositories.RestPasswordRepository;
 import com.example.pidev.DAO.Repositories.UserRepositories;
 import com.example.pidev.Service.Interface.IUser;
 import com.example.pidev.email.EmailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +19,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,6 +29,11 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class UserService implements IUser {
+
+    @Autowired
+    RestPasswordRepository passwordTokenRepository;
+    @Autowired
+    private final PasswordTokenService passwordTokenService;
     @Autowired
     private UserRepositories userRepositories;
     @Autowired
@@ -169,8 +180,6 @@ public class UserService implements IUser {
 
         userRepositories.save(user.get());
 
-
-
-
     }
+
 }
