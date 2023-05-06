@@ -45,7 +45,17 @@ public class UserRestControllers {
 
 
     }
+    @PutMapping("/user/updateuser/{id}")
+    public void updateuserbyID(@PathVariable String id,@RequestBody User user)
+    {
+        User u=iUser.getUserByEmail(id);
+        u.setUsername(user.getUsername());
 
+
+        u.setMail(user.getMail());
+
+        iUser.edit(u);
+    }
     @GetMapping("/admin/afficherUserbyID/{id}")
     public User AfficherByID(@PathVariable int id)
     {

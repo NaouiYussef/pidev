@@ -21,7 +21,7 @@ import java.util.Set;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class User  implements Serializable {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idUser;
@@ -32,7 +32,7 @@ public class User  implements Serializable {
     @Transient
     String verifpassword;
     @Temporal(TemporalType.DATE)
-    Date dateNaissance;
+    Date dateCreation;
     @ManyToOne
     Role roles;
     @Transient
@@ -42,9 +42,11 @@ public class User  implements Serializable {
     private String PasswordToken;
     private Boolean locked = false;
     private Boolean enabled = false;
+
     public String getRoleName() {
         return (roles != null) ? roles.getName() : null;
     }
+
     public Role getRole() {
         return roles;
     }
@@ -53,6 +55,8 @@ public class User  implements Serializable {
         return username;
     }
 
-
+    @PrePersist
+    public void setDateCreation() {
+        this.dateCreation = new Date();
+    }
 }
-
