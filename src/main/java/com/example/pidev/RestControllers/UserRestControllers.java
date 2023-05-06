@@ -31,9 +31,14 @@ public class UserRestControllers {
     private ISecurity iSecurity;
 
     @PostMapping("/user/add")
-    public void ajouter (@RequestBody User user)
+    public boolean ajouter (@RequestBody User user)
     {
-        iUser.add(user);}
+        if(userService.checkEmailExists(user.getMail()))
+           return false;
+
+        iUser.add(user);
+        return  true;
+    }
 
 
     @PutMapping("/user/update")
@@ -65,7 +70,7 @@ public class UserRestControllers {
     @GetMapping("/admin/all")
     public List<User> AfficherUsers()
     {
-
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         return iUser.selectAll();
     }
     @DeleteMapping("/admin/delete/{id}")
@@ -97,5 +102,12 @@ public class UserRestControllers {
         userService.verifyPassToken(token,userReq.getPassword());
         return new ResponseEntity<>(FOUND, HttpStatus.OK);
     }
+    @GetMapping("/user/email/{email}")
+    public boolean checkEmailExists(@PathVariable String email) {
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        return userService.checkEmailExists(email);
+    }
+
+
 
 }

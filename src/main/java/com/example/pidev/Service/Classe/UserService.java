@@ -75,6 +75,14 @@ public class UserService implements IUser {
         userRepositories.deleteById(id);
 
     }
+    @Override
+    public boolean checkEmailExists(String email) {
+        List<User> users= userRepositories.findAll();
+        for(User d:users )
+            if(d.getMail().equals(email))
+                return true;
+        return false;
+    }
 
 
     @Override
