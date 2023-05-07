@@ -1,10 +1,12 @@
 package com.example.pidev.DAO.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,12 +16,18 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Role implements Serializable {
+public class LigneDeCommande implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idRole;
-    String name;
-    @OneToMany (mappedBy = "roles")
-    List<User> userList;
+    long id;
+    long quantity;
+    long prixT;
+
+    @OneToOne
+
+    Product product;
+    @ManyToOne
+
+    private ShoppingCart panier;
 
 }

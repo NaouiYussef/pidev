@@ -13,17 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+//@Table(name="product")
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
+  //  @Column(name="product_name")
     String ProductName;
     @Enumerated(EnumType.STRING)
     ERegion Region;
@@ -37,7 +39,7 @@ public class Product implements Serializable {
 
     @OneToMany(
             mappedBy = "product",
-            cascade = CascadeType.PERSIST,
+            cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     @ToString.Exclude

@@ -1,12 +1,15 @@
 package com.example.pidev.DAO.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.transaction.event.TransactionalEventListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,21 +17,17 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User  implements Serializable {
+public class Commande implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idUser;
-
-    String username;
-    String mail;
-    String password;
-    @Transient
-    String verifpassword;
-    @Temporal(TemporalType.DATE)
-    Date dateNaissance;
+    long commande_id;
     @ManyToOne
-    Role roles;
+    private User consumer;
+    //long consumer_id;
+    float prix_total;
+    LocalDateTime date_commande;
+ @OneToOne
+    ShoppingCart shoppingCart;
 
 }

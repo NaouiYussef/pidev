@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Product")
 public class ProductRestControllers {
     private IProduct iprod;
@@ -38,22 +37,10 @@ public class ProductRestControllers {
         return iprod.SelectById(id);
     }
 
-    @DeleteMapping("/deleteProdbyID/{id}")
+    @DeleteMapping("/admin/deleteProdbyID/{id}")
     public String delete(@PathVariable Long id)
     {
         iprod.deleteById(id);
         return "Deleted";
-    }
-
-    @GetMapping("/searchProd/{string}")
-    public List<Product> searchProducts(@PathVariable String string)
-    {
-        return iprod.searchProducts(string);
-    }
-
-    @GetMapping("/sortByPrice")
-    public List<Product> sortProductsByPrice() {
-        List<Product> sortedProducts = iprod.sortProductsByPrice();
-        return sortedProducts;
     }
 }
