@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -29,4 +31,17 @@ public class Comment {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "idUser", referencedColumnName = "idUser")
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_comment_id", referencedColumnName = "id")
+    private Comment parentComment;
+
+    @OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> subComments;
+    public void addSubComment(Comment subComment) {
+        if (subComments == null) {
+            subComments = new ArrayList<>();
+        }
+        subComments.add(subComment);
+    }
 }

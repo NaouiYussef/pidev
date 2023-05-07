@@ -58,10 +58,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/user/**").hasAnyAuthority("provider","consumer");
 //        http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority("[ROLE_ADMIN]");
 //        http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority("[ROLE_ADMIN]");
-//        http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/api/votes").hasAnyAuthority("admin","provider","consumer");
-//        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/posts").hasAnyAuthority("admin","provider","consumer");
-//        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/subreddit").hasAnyAuthority("admin","provider","consumer");
-//        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/comments").hasAnyAuthority("admin","provider","consumer");
+        http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/api/votes").hasAnyAuthority("admin","provider","consumer");
+        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/posts").hasAnyAuthority("admin","provider","consumer");
+        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/subreddit").hasAnyAuthority("admin","provider","consumer");
+        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/comments").hasAnyAuthority("admin","provider","consumer");
 //
 
         http.authorizeHttpRequests().anyRequest().permitAll();

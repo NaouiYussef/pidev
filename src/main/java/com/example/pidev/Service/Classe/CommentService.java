@@ -13,14 +13,18 @@ import com.example.pidev.Exceptions.PostNotFoundException;
 import com.example.pidev.Mapper.CommentMapper;
 import lombok.AllArgsConstructor;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.webjars.NotFoundException;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.Instant;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -37,8 +41,8 @@ public class CommentService {
     private final UserRepositories userRepositories;
     private final Security security;
     private final CommentRepository commentRepository;
-   // private final MailContentBuilder mailContentBuilder;
-   // private final MailService mailService;
+    // private final MailContentBuilder mailContentBuilder;
+    // private final MailService mailService;
 
     public void save(CommentsDto commentsDto) {
         Long postId = commentsDto.getPostId();
@@ -56,8 +60,8 @@ public class CommentService {
 
 
 
-    // String message = mailContentBuilder.build(authService.getCurrentUser() + " posted a comment on your post." + POST_URL);
-       // sendCommentNotification(message, post.getUser());
+        // String message = mailContentBuilder.build(authService.getCurrentUser() + " posted a comment on your post." + POST_URL);
+        // sendCommentNotification(message, post.getUser());
     }
 
     @Transactional(readOnly = true)
@@ -89,9 +93,9 @@ public class CommentService {
                 .collect(toList());
     }
 
-  public void deleteById(Long id) {
-      commentRepository.deleteById(id);
-  }
+    public void deleteById(Long id) {
+        commentRepository.deleteById(id);
+    }
 
     public String filterComment(String comment) {
         String[] words = comment.split("\\s+"); // Split the comment into words
@@ -112,4 +116,41 @@ public class CommentService {
 
         return String.join(" ", words); // Join the words back into a string
     }
+
+    public CommentsDto createSubComment(Long commentId, CommentsDto commentDto) {
+        Comment parentComment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new NotFoundException("Comment not found with id - " + commentId));
+
+        User currentUser = userRepositories.findByMail(security.getCurrentUserName());
+
+        Comment subComment = commentMapper.map(commentDto, parentComment.getPost(), currentUser);
+        subComment.setParentComment(parentComment);
+        subComment.setCreatedDate(Instant.now());
+
+        parentComment.addSubComment(subComment); // Add the subcomment to the parent comment's list of subcomments
+
+        Comment savedComment = commentRepository.save(subComment);
+        CommentsDto savedCommentResponse = commentMapper.mapToDto(savedComment);
+
+        return savedCommentResponse;
+    }
+
+
+
+    public List<CommentsDto> getAllSubCommentsByComment(Long commentId) {
+        Comment parentComment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new NotFoundException("Comment not found with id - " + commentId));
+
+        List<Comment> subComments = parentComment.getSubComments();
+        List<CommentsDto> subCommentDtos = new ArrayList<>();
+        for (Comment subComment : subComments) {
+            subCommentDtos.add(commentMapper.mapToDto(subComment));
+        }
+        return subCommentDtos;
+    }
+
+
+
+
+
 }
