@@ -50,18 +50,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeHttpRequests().antMatchers("/login/**","/user/add","/ajouterrole").permitAll();
 //        //juste pour le test
-    //    http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/**").permitAll();
-      //  http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/**").permitAll();
+        http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/**").permitAll();
+        http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/**").permitAll();
 //
 //
 //       http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/user/**").hasAnyAuthority("provider","consumer");
 //        http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/user/**").hasAnyAuthority("provider","consumer");
 //        http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority("[ROLE_ADMIN]");
 //        http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority("[ROLE_ADMIN]");
-       http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/api/votes").hasAnyAuthority("admin","provider","consumer");
-        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/posts").hasAnyAuthority("admin","provider","consumer");
-        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/subreddit").hasAnyAuthority("admin","provider","consumer");
-        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/comments").hasAnyAuthority("admin","provider","consumer");
+     //  http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/api/votes").hasAnyAuthority("admin","provider","consumer");
+      //  http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/posts").hasAnyAuthority("admin","provider","consumer");
+   //     http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/subreddit").hasAnyAuthority("admin","provider","consumer");
+    //    http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/comments").hasAnyAuthority("admin","provider","consumer");
 //
 
         http.authorizeHttpRequests().anyRequest().permitAll();
