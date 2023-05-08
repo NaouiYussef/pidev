@@ -30,9 +30,9 @@ public class ShopCartRestControllers {
     public List<ShoppingCart> selectAll(){
         return sc.selectAll();
     }
-    @PutMapping("/editShop")
-    public ShoppingCart edit(@RequestBody ShoppingCart s ){
-        return sc.edit(s);
+    @PutMapping("/editShop/{id}")
+    public ShoppingCart edit(@PathVariable Long id ){
+        return sc.edit(id);
     }
     @PostMapping("/deleteShop")
     public void deleteById(@RequestBody Long id){

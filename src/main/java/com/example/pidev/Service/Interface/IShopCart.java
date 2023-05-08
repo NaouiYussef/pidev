@@ -13,7 +13,7 @@ public interface IShopCart {
     void supprimerLignePanier(Long id, Long l);
     ShoppingCart ajouterLigne( Long id, LigneDeCommande l) ;
 
-    ShoppingCart edit(ShoppingCart s );
+    ShoppingCart edit(Long s );
     List<ShoppingCart> selectAll();
     ShoppingCart SelectById(Long id);
     void deleteById(Long id);

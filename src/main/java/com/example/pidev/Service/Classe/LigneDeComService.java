@@ -69,12 +69,14 @@ for (LigneDeCommande l:ListLigne)
 {
     if(id==l.getPanier().getId())
     {
+
         MaListe.add(l);
     }
 
 }
         return MaListe;
     }
+
 
     @Override
     public LigneDeCommande SelectById(Long id) {

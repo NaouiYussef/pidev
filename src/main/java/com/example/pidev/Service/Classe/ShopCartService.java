@@ -120,29 +120,26 @@ for(ShoppingCart s:Carts)
 
 
     @Override
-    public ShoppingCart edit(ShoppingCart s) {
+    public ShoppingCart edit(Long id) {
 
-        ShoppingCart panier = sc.findShoppingCartById(s.getId());
-        panier.setEtat(s.getEtat());
-        List<LigneDeCommande> ls = panier.getLigneDeCommandes();
-        if(panier.getEtat().equals(Eetat.Valider)) {
+        ShoppingCart s=sc.findShoppingCartById(id);
+      s.setEtat(Eetat.Valider);
+       List<LigneDeCommande> ls = s.getLigneDeCommandes();
             Commande c = new Commande();
             c.setDate_commande(LocalDateTime.now());
 
-            c.setShoppingCart(panier);
-            c.setConsumer(panier.getUser());
-            c.setPrix_total(panier.getTotal());
+            c.setShoppingCart(s);
+            c.setConsumer(s.getUser());
+            c.setPrix_total(s.getTotal());
             cc.save(c);
             for (LigneDeCommande l:ls
             ) {
                 ls.remove(l);
-                sc.save(s);
+
             }
-            s.setEtat(Eetat.non_Valider);
-        } else {
-            s.setLigneDeCommandes(ls);
-        }
         sc.save(s);
+
+
         return s;
     }
 
