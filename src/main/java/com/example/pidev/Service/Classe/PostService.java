@@ -66,7 +66,7 @@ public class PostService  {
                 .orElseThrow(() -> new SubredditNotFoundException(postRequest.getSubredditName()));
         User user = userRepositories.findByMail(security.getCurrentUserName());
        // User currentUser =   userRepositories.findByMail(iSecurity.getCurrentUser());
-        postRepository.save(postMapper.map(postRequest, subreddit, user ));
+        postRepository.save(postMapper.map(postRequest, subreddit,user));
     };
 
     @Transactional(readOnly = true)

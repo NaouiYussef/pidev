@@ -28,6 +28,7 @@ public class Comment {
     @JoinColumn(name = "postId", referencedColumnName = "postId")
     private Post post;
     private Instant createdDate;
+    private boolean sub;
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "idUser", referencedColumnName = "idUser")
     private User user;
@@ -35,6 +36,9 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_comment_id", referencedColumnName = "id")
     private Comment parentComment;
+
+    @Column(name = "parent_comment_id", insertable = false, updatable = false)
+    private Long parentCommentId;
 
     @OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> subComments;
