@@ -28,25 +28,47 @@ public class ShopCartService implements IShopCart {
     ProductRepositories pr;
 
     @Override
-    public ShoppingCart add(ShoppingCart s  , int u) {
+    public ShoppingCart add(User u) {
 
-        User user= userRepositories.getById(u);
-System.out.println(user.getUsername());
-//        if (s.getEtat().equals(Eetat.Valider)){
-//            ShoppingCart shoppingCart = new ShoppingCart();
-            s.setEtat(Eetat.non_Valider);
-            s.setUser(user);
-        System.out.println("aaaaaaaaaaaaaaaaa  "+ s.getUser().getUsername());
-            return sc.save(s);
+List<ShoppingCart> Carts= sc.findAll();
+for(ShoppingCart s:Carts)
+{
+    if(s.getUser().getIdUser()==u.getIdUser())
+    {
+        if (s.getEtat().equals(Eetat.non_Valider))
+            return s;
+         else {
+            ShoppingCart shoppingCart = new ShoppingCart();
 
+            shoppingCart.setEtat(Eetat.non_Valider);
+            shoppingCart.setUser(u);
+            shoppingCart.setTotal(0L);
+            System.out.println("aaaaaaaaaaaaaaaaa  " + shoppingCart.getUser().getUsername());
+            return sc.save(shoppingCart);
+
+        }
     }
+
+
+}
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+
+
+        shoppingCart.setEtat(Eetat.non_Valider);
+        shoppingCart.setUser(u);
+        shoppingCart.setTotal(0L);
+        System.out.println("aaaaaaaaaaaaaaaaa  "+ shoppingCart.getUser().getUsername());
+        return sc.save(shoppingCart);
+//        if (s.getEtat().equals(Eetat.Valider)){
+         }
     public ShoppingCart ajouterLigne( Long id, LigneDeCommande l) {
         ShoppingCart panier = sc.findShoppingCartById(id);
         if (panier.getEtat().equals(Eetat.non_Valider)){
             Optional<LigneDeCommande> existingLc = cr.findByProductId(l.getProduct().getId());
             if (existingLc.isPresent()) {
                 LigneDeCommande lc = existingLc.get();
-                lc.setQuantity(l.getQuantity() + lc.getQuantity());
+                lc.setQuantity(l.getQuantity() + 1);
                 lc.setPrixT((long) (lc.getQuantity() * lc.getProduct().getPrix()));
                 cr.save(lc);
             } else {

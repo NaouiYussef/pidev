@@ -6,7 +6,7 @@ import com.example.pidev.DAO.Entities.ShoppingCart;
 import java.util.List;
 
 public interface ILigneDeCom {
-    LigneDeCommande add(LigneDeCommande s);
+    LigneDeCommande add(Long idPanier,Long productId);
     LigneDeCommande edit(LigneDeCommande s );
     List<LigneDeCommande> selectAll(Long id);
     LigneDeCommande SelectById(Long id);

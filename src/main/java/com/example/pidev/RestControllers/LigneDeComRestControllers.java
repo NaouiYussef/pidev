@@ -17,10 +17,10 @@ import java.util.List;
 public class LigneDeComRestControllers {
     @Autowired
     LigneDeComService sc;
-    @PostMapping("/addLigneDeCommande")
+    @PostMapping("/addLigneDeCommande/{idPanier}/{productId}")
     // public LigneDeCommande addToBasket(@RequestParam Long productId,@RequestParam int quantity,@RequestBody(required = false)  LigneDeCommande ligneDeCommande){
-    public LigneDeCommande add(@RequestBody LigneDeCommande s){
-        return sc.add(s);
+    public LigneDeCommande add(@PathVariable Long idPanier,@PathVariable Long productId){
+        return sc.add(idPanier,productId);
     }
 
     @GetMapping("/showLigneDeCommande/{id}")

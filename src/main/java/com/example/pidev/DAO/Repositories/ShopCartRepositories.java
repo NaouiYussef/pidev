@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ShopCartRepositories extends JpaRepository<ShoppingCart,Long> {
     ShoppingCart findShoppingCartById (Long id);
-  //  ShoppingCart findShoppingCartByUserIdUser(int id);
+    ShoppingCart findShoppingCartByUserIdUser(int id);
 
 
 }

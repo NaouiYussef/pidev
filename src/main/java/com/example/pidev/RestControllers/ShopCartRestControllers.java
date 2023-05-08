@@ -20,9 +20,11 @@ import java.util.Set;
 public class ShopCartRestControllers {
     @Autowired
     ShopCartService sc;
-    @PostMapping("/{id}/addShop")
-    public ShoppingCart add(@PathVariable int id,@RequestBody ShoppingCart s  ){
-        return sc.add(s,id);
+    @PostMapping("/addCart")
+    public ShoppingCart add(@RequestBody User s  ){
+
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        return sc.add(s);
     }
     @GetMapping ("/showShop")
     public List<ShoppingCart> selectAll(){

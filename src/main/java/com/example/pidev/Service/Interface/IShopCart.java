@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface IShopCart {
-    ShoppingCart add(ShoppingCart s ,int u);
+    ShoppingCart add(User u);
     void supprimerLignePanier(Long id, Long l);
     ShoppingCart ajouterLigne( Long id, LigneDeCommande l) ;
 
