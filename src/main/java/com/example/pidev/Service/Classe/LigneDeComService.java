@@ -6,10 +6,13 @@ import com.example.pidev.DAO.Entities.ShoppingCart;
 import com.example.pidev.DAO.Repositories.CommandeRepositories;
 import com.example.pidev.DAO.Repositories.LigneDeComRepositories;
 import com.example.pidev.DAO.Repositories.ProductRepositories;
+import com.example.pidev.DAO.Repositories.ShopCartRepositories;
 import com.example.pidev.Service.Interface.ILigneDeCom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,18 +22,19 @@ public class LigneDeComService implements ILigneDeCom {
     LigneDeComRepositories cr;
     @Autowired
     ProductRepositories pr;
+    @Autowired
+    ShopCartRepositories cc;
     @Override
-    public LigneDeCommande add(LigneDeCommande s) {
-       // Optional<LigneDeCommande> existingLc = cr.findByProductProductName(s.getProduct().getProductName());
-       Optional<LigneDeCommande> existingLc = cr.findByProductId(s.getProduct().getId());
-        if (existingLc.isPresent()) {
-            LigneDeCommande lc = existingLc.get();
-            lc.setQuantity(s.getQuantity() + lc.getQuantity());
-            lc.setPrixT((long) (lc.getQuantity() * lc.getProduct().getPrix()));
-            return cr.save(lc);
-        } else {
-            return cr.save(s);
-        }
+    public LigneDeCommande add(Long idPanier,Long productId) {
+      LigneDeCommande l = new LigneDeCommande();
+      ShoppingCart p = cc.findShoppingCartById(idPanier);
+      l.setPanier(p);
+      Product product =pr.getReferenceById(productId);
+      l.setProduct(product);
+       l.setQuantity(1L);
+       l.setPrixT((long) (l.getQuantity() * l.getProduct().getPrix()));
+       return cr.save(l);
+
     }
 
 
@@ -57,9 +61,22 @@ public class LigneDeComService implements ILigneDeCom {
     }
 
     @Override
-    public List<LigneDeCommande> selectAll() {
-        return cr.findAll();
+    public List<LigneDeCommande> selectAll(Long id) {
+
+        List<LigneDeCommande> ListLigne= cr.findAll();
+        List<LigneDeCommande> MaListe= new ArrayList<>();
+for (LigneDeCommande l:ListLigne)
+{
+    if(id==l.getPanier().getId())
+    {
+
+        MaListe.add(l);
     }
+
+}
+        return MaListe;
+    }
+
 
     @Override
     public LigneDeCommande SelectById(Long id) {

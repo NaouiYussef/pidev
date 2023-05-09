@@ -23,10 +23,10 @@ public class ShoppingCart implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     @OneToMany(mappedBy = "panier", cascade = CascadeType.ALL)
-  @JsonIgnore
+    @JsonIgnore
     private List<LigneDeCommande> ligneDeCommandes = new ArrayList<>();
 
-    @ManyToOne()
+    @ManyToOne
 
     User user;
     @Enumerated(EnumType.STRING)

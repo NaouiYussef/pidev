@@ -20,7 +20,7 @@ public class CommandeRestControllers {
     public Commande add(@RequestBody Commande s){
         return cs.add(s);
     }
-    @GetMapping("/showCommande")
+    @GetMapping("/showCommandes")
     public List<Commande> selectAll(){
         return cs.selectAll();
     }

@@ -18,5 +18,5 @@ public interface LigneDeComRepositories extends JpaRepository<LigneDeCommande,Lo
     Optional<LigneDeCommande> findByPanierId(Long id);
 
 
-   // Optional<LigneDeCommande> findByProductProductName(String name);
+    // Optional<LigneDeCommande> findByProductProductName(String name);
 }

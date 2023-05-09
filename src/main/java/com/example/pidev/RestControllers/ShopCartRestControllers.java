@@ -18,28 +18,32 @@ import java.util.Set;
 @AllArgsConstructor
 @RequestMapping("/ShoppingCart")
 public class ShopCartRestControllers {
-  @Autowired
-  ShopCartService sc;
-    @PostMapping("/{id}/addShop")
-    public ShoppingCart add(@PathVariable User u){
-        return sc.add(u);
+    @Autowired
+    ShopCartService sc;
+    @PostMapping("/addCart")
+    public ShoppingCart add(@RequestBody User s  ){
+
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        return sc.add(s);
     }
-  @GetMapping ("/showShop")
-  public List<LigneDeCommande> selectAll(){
-      return sc.selectAll();
-  }
-  @PutMapping("/editShop")
-   public ShoppingCart edit(@RequestBody ShoppingCart s ){
-        return sc.edit(s);
+    @GetMapping ("/showShop")
+    public List<ShoppingCart> selectAll(){
+        return sc.selectAll();
     }
-   @PostMapping("/deleteShop")
+    @PutMapping("/editShop/{id}")
+    public ShoppingCart edit(@PathVariable Long id ){
+        return sc.edit(id);
+    }
+    @PostMapping("/deleteShop")
     public void deleteById(@RequestBody Long id){
-         sc.deleteById(id);
+        sc.deleteById(id);
     }
     @GetMapping("/{id}/select")
     public ShoppingCart SelectById(@PathVariable Long id){ return sc.SelectById(id);}
-    @DeleteMapping ("/{id}/deleteLigne/{l}")
-    public  void supprimerLignePanier(@PathVariable Long id, @PathVariable long l){sc.supprimerLignePanier(id,l);}
+    @DeleteMapping ("/deleteLigne/{l}/{id}")
+    public  void supprimerLignePanier(@PathVariable Long id, @PathVariable Long l){
+        System.out.println("ebebebehzybhbedibdia");
+        sc.supprimerLignePanier(id,l);}
     @PostMapping("/{id}/addLigneShop")
     public ShoppingCart ajouterLigne(@PathVariable  Long id,@RequestBody LigneDeCommande l) { return sc.ajouterLigne(id,l);}
 

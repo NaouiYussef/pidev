@@ -1,26 +1,24 @@
 package com.example.pidev.Service.Classe;
 
 import com.example.pidev.DAO.Entities.*;
-import com.example.pidev.DAO.Repositories.CommandeRepositories;
-import com.example.pidev.DAO.Repositories.LigneDeComRepositories;
-import com.example.pidev.DAO.Repositories.ProductRepositories;
-import com.example.pidev.DAO.Repositories.ShopCartRepositories;
+import com.example.pidev.DAO.Repositories.*;
 import com.example.pidev.Service.Interface.ICommande;
 import com.example.pidev.Service.Interface.IShopCart;
+import com.example.pidev.Service.Interface.IUser;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
 public class ShopCartService implements IShopCart {
- @Autowired
+    @Autowired
+    UserRepositories userRepositories;
+    @Autowired
     ShopCartRepositories sc;
     @Autowired
     CommandeRepositories cc;
@@ -31,39 +29,63 @@ public class ShopCartService implements IShopCart {
 
     @Override
     public ShoppingCart add(User u) {
-        ShoppingCart s = sc.findShoppingCartByUserIdUser(u.getIdUser());
-        if (s.getEtat().equals(Eetat.Valider)){
+
+List<ShoppingCart> Carts= sc.findAll();
+for(ShoppingCart s:Carts)
+{
+    if(s.getUser().getIdUser()==u.getIdUser())
+    {
+        if (s.getEtat().equals(Eetat.non_Valider))
+            return s;
+         else {
             ShoppingCart shoppingCart = new ShoppingCart();
+
             shoppingCart.setEtat(Eetat.non_Valider);
             shoppingCart.setUser(u);
+            shoppingCart.setTotal(0L);
+            System.out.println("aaaaaaaaaaaaaaaaa  " + shoppingCart.getUser().getUsername());
             return sc.save(shoppingCart);
+
         }
-        return sc.save(s);
     }
+
+
+}
+        ShoppingCart shoppingCart = new ShoppingCart();
+
+
+
+        shoppingCart.setEtat(Eetat.non_Valider);
+        shoppingCart.setUser(u);
+        shoppingCart.setTotal(0L);
+        System.out.println("aaaaaaaaaaaaaaaaa  "+ shoppingCart.getUser().getUsername());
+        return sc.save(shoppingCart);
+//        if (s.getEtat().equals(Eetat.Valider)){
+         }
     public ShoppingCart ajouterLigne( Long id, LigneDeCommande l) {
-ShoppingCart panier = sc.findShoppingCartById(id);
+        ShoppingCart panier = sc.findShoppingCartById(id);
         if (panier.getEtat().equals(Eetat.non_Valider)){
-        Optional<LigneDeCommande> existingLc = cr.findByProductId(l.getProduct().getId());
-        if (existingLc.isPresent()) {
-            LigneDeCommande lc = existingLc.get();
-            lc.setQuantity(l.getQuantity() + lc.getQuantity());
-            lc.setPrixT((long) (lc.getQuantity() * lc.getProduct().getPrix()));
-            cr.save(lc);
-        } else {
+            Optional<LigneDeCommande> existingLc = cr.findByProductId(l.getProduct().getId());
+            if (existingLc.isPresent()) {
+                LigneDeCommande lc = existingLc.get();
+                lc.setQuantity(l.getQuantity() + 1);
+                lc.setPrixT((long) (lc.getQuantity() * lc.getProduct().getPrix()));
+                cr.save(lc);
+            } else {
 
-            panier.getLigneDeCommandes().add(l);
-            l.setPanier(sc.findShoppingCartById(id));
-            l.setPrixT((long) (l.getQuantity() * l.getProduct().getPrix()));
+                panier.getLigneDeCommandes().add(l);
+                l.setPanier(sc.findShoppingCartById(id));
+                l.setPrixT((long) (l.getQuantity() * l.getProduct().getPrix()));
 
-            cr.save(l);
-            sc.save(panier);
-        }
+                cr.save(l);
+                sc.save(panier);
+            }
 
-        List<LigneDeCommande> ls=panier.getLigneDeCommandes();
-        for (LigneDeCommande u:ls ) {
-          panier.setTotal(panier.getTotal()+u.getPrixT());
+            List<LigneDeCommande> ls=panier.getLigneDeCommandes();
+            for (LigneDeCommande u:ls ) {
+                panier.setTotal(panier.getTotal()+u.getPrixT());
 
-        }
+            }
 
 
         }
@@ -80,17 +102,18 @@ ShoppingCart panier = sc.findShoppingCartById(id);
             return sc.save(shoppingCart);
 
         }
-       return sc.save(panier);
+        return sc.save(panier);
     }
 
     public void supprimerLignePanier(Long id , Long l) {
         ShoppingCart panier = sc.findShoppingCartById(id);
         List <LigneDeCommande> ls=panier.getLigneDeCommandes();
         for (LigneDeCommande u:ls ) {
-           if(u.getId()==l){}
+            if(u.getId()==l){}
 
         }
         panier.getLigneDeCommandes().remove(l);
+        System.out.println(panier);
         sc.save(panier);
     }
 
@@ -98,48 +121,46 @@ ShoppingCart panier = sc.findShoppingCartById(id);
 
 
     @Override
-    public ShoppingCart edit(ShoppingCart s) {
-        ShoppingCart panier = sc.findShoppingCartById(s.getId());
+    public ShoppingCart edit(Long id) {
 
-        List<LigneDeCommande> ls = panier.getLigneDeCommandes();
-
-
-        if(panier.getEtat().equals(Eetat.Valider)) {
+        ShoppingCart s=sc.findShoppingCartById(id);
+      s.setEtat(Eetat.Valider);
+       List<LigneDeCommande> ls = s.getLigneDeCommandes();
             Commande c = new Commande();
             c.setDate_commande(LocalDateTime.now());
-            c.setShoppingCart(panier);
-            c.setConsumer(panier.getUser());
-            c.setPrix_total(panier.getTotal());
-            cc.save(c);
 
+            c.setShoppingCart(s);
+            c.setConsumer(s.getUser());
+            c.setPrix_total(s.getTotal());
+            cc.save(c);
             for (LigneDeCommande l:ls
             ) {
-                    ls.remove(l);
-                    sc.save(s);
-            }
-            s.setEtat(Eetat.non_Valider);
-        } else {
-            s.setLigneDeCommandes(ls);
+                ls.remove(l);
 
-        }
+            }
         sc.save(s);
+
+
         return s;
     }
 
     @Override
-    public List<LigneDeCommande> selectAll() {
-        List<LigneDeCommande> lc= cr.findAll();
+    public List<ShoppingCart> selectAll() {
 
-        return lc;
+
+
+        return sc.findAll();
+
+
     }
 
     @Override
     public ShoppingCart SelectById(Long id) {
 
-ShoppingCart s =sc.findById(id).get();
+        ShoppingCart s =sc.findById(id).get();
 
         System.out.println(s.getLigneDeCommandes());
-            return s;
+        return s;
 
 
 
@@ -148,6 +169,6 @@ ShoppingCart s =sc.findById(id).get();
 
     @Override
     public void deleteById(Long id) {
-      sc.deleteById(id);
+        sc.deleteById(id);
     }
 }

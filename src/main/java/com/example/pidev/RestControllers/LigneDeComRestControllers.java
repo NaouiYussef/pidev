@@ -17,14 +17,19 @@ import java.util.List;
 public class LigneDeComRestControllers {
     @Autowired
     LigneDeComService sc;
-    @PostMapping("/addLigneDeCommande")
-   // public LigneDeCommande addToBasket(@RequestParam Long productId,@RequestParam int quantity,@RequestBody(required = false)  LigneDeCommande ligneDeCommande){
-    public LigneDeCommande add(@RequestBody LigneDeCommande s){
-        return sc.add(s);
+    @PostMapping("/addLigneDeCommande/{idPanier}/{productId}")
+    // public LigneDeCommande addToBasket(@RequestParam Long productId,@RequestParam int quantity,@RequestBody(required = false)  LigneDeCommande ligneDeCommande){
+    public LigneDeCommande add(@PathVariable Long idPanier,@PathVariable Long productId){
+        return sc.add(idPanier,productId);
     }
-    @GetMapping("/showLigneDeCommande")
-    public List<LigneDeCommande> selectAll(){
-        return sc.selectAll();
+
+    @GetMapping("/showLigneDeCommande/{id}")
+    public List<LigneDeCommande> selectAll(@PathVariable Long id){
+        return sc.selectAll(id);
+    }
+    @GetMapping("/showLigneDeCommandee/{id}")
+    public List<LigneDeCommande> selectAllFront(@PathVariable Long id){
+        return sc.selectAll(id);
     }
     @PostMapping("/deleteLigneDeCommande")
     public void deleteById(Long id){

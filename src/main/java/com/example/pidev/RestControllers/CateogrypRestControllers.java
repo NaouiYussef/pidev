@@ -12,12 +12,13 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/category")
 public class CateogrypRestControllers {
     private ICategory icat;
 
     @PostMapping("/addCat")
-        public Categoryp ajouter (@RequestBody Categoryp cat)
+    public Categoryp ajouter (@RequestBody Categoryp cat)
     {
         return  icat.add(cat);
     }
@@ -38,7 +39,7 @@ public class CateogrypRestControllers {
         return icat.SelectById(id);
     }
 
-    @DeleteMapping("/admin/deleteCatbyID/{id}")
+    @DeleteMapping("/deleteCatbyID/{id}")
     public String delete(@PathVariable Long id)
     {
         icat.deleteById(id);

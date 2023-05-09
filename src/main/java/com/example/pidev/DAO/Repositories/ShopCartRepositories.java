@@ -9,8 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface ShopCartRepositories extends JpaRepository<ShoppingCart,Long> {
-ShoppingCart findShoppingCartById (long id);
-ShoppingCart findShoppingCartByUserIdUser(long id);
+    ShoppingCart findShoppingCartById (Long id);
+    ShoppingCart findShoppingCartByUserIdUser(int id);
 
 
 }
