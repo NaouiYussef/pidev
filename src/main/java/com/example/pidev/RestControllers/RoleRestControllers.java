@@ -15,16 +15,16 @@ import java.util.List;
 
 public class RoleRestControllers {
     private IRole iRole;
-    @PostMapping("/ajouterrole")
+    @PostMapping("/admin/ajouterrole")
     public void ajouter (@RequestBody Role role)
     {
         iRole.add(role);}
-    @GetMapping("/allrole")
+    @GetMapping("/user/allrole")
     public List<Role> AfficherRoles()
     {
         return iRole.selectAll();
     }
-    @DeleteMapping("/role/delete/{id}")
+    @DeleteMapping("/admin/deleterole/{id}")
     public void delete(@PathVariable int id)
     {
         iRole.deleteById(id);

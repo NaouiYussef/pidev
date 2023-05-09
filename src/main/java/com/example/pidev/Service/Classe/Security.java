@@ -39,14 +39,14 @@ public class Security implements ISecurity, UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user= userRepo.findByMail(email);
 
-            if (user == null) {
-                log.error("user not found in the database");
-            } else {
-                log.info("user found in the database: {}", email);
-            }
-            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(user.getRoles().getName()));
-            return new org.springframework.security.core.userdetails.User(user.getMail(), user.getPassword(), authorities);
+        if (user == null) {
+            log.error("user not found in the database");
+        } else {
+            log.info("user found in the database: {}", email);
+        }
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(user.getRoles().getName()));
+        return new org.springframework.security.core.userdetails.User(user.getMail(), user.getPassword(), authorities);
 
     }
 

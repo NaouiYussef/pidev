@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
+import static org.springframework.security.authorization.AuthenticatedAuthorizationManager.authenticated;
 import static org.springframework.security.config.http.SessionCreationPolicy.*;
 
 @Configuration
@@ -31,7 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
+
+
     @Override
+
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
@@ -43,24 +48,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable().cors();// Enable CORS;
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeHttpRequests().antMatchers("/login/**","/user/add","/ajouterrole","/all").permitAll();
+        http.authorizeHttpRequests().antMatchers("/login/**","/user/add","/ajouterrole").permitAll();
 //        //juste pour le test
         http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/**").permitAll();
         http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/**").permitAll();
-
-    //    http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/user/**").hasAnyAuthority("provider","consumer");
-    //    http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/user/**").hasAnyAuthority("provider","consumer");
-    //    http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority("[ROLE_ADMIN]");
-    //    http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority("[ROLE_ADMIN]");
+//
+//
+//       http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/user/**").hasAnyAuthority("provider","consumer");
+//        http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/user/**").hasAnyAuthority("provider","consumer");
+//        http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority("[ROLE_ADMIN]");
+//        http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority("[ROLE_ADMIN]");
+//        http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/api/votes").hasAnyAuthority("admin","provider","consumer");
+//        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/posts").hasAnyAuthority("admin","provider","consumer");
+//        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/subreddit").hasAnyAuthority("admin","provider","consumer");
+//        http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/comments").hasAnyAuthority("admin","provider","consumer");
+//
 
         http.authorizeHttpRequests().anyRequest().permitAll();
-        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+       http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
     }
-    @Bean
+
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
+
+
+
+
 
 }
