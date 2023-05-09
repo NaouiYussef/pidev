@@ -1,12 +1,12 @@
 package com.example.pidev.Service.Classe;
 
 
-import com.example.pidev.DAO.Entities.Post;
-import com.example.pidev.DAO.Entities.User;
-import com.example.pidev.DAO.Entities.Vote;
-import com.example.pidev.DAO.Repositories.PostRepository;
-import com.example.pidev.DAO.Repositories.UserRepositories;
-import com.example.pidev.DAO.Repositories.VoteRepository;
+import com.example.pidev.Dto.DAO.Entities.Post;
+import com.example.pidev.Dto.DAO.Entities.User;
+import com.example.pidev.Dto.DAO.Entities.Vote;
+import com.example.pidev.Dto.DAO.Repositories.PostRepository;
+import com.example.pidev.Dto.DAO.Repositories.UserRepositories;
+import com.example.pidev.Dto.DAO.Repositories.VoteRepository;
 import com.example.pidev.Dto.VoteDto;
 import com.example.pidev.Exceptions.PostNotFoundException;
 import com.example.pidev.Exceptions.SpringRedditException;
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static com.example.pidev.DAO.Entities.VoteType.UPVOTE;
+import static com.example.pidev.Dto.DAO.Entities.VoteType.UPVOTE;
 
 
 @Service

@@ -1,7 +1,7 @@
 package com.example.pidev.Service.Classe;
 
-import com.example.pidev.DAO.Entities.Role;
-import com.example.pidev.DAO.Repositories.RoleRepositories;
+import com.example.pidev.Dto.DAO.Entities.Role;
+import com.example.pidev.Dto.DAO.Repositories.RoleRepositories;
 import com.example.pidev.Service.Interface.IRole;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

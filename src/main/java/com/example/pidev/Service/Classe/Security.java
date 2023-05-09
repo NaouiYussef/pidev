@@ -1,9 +1,9 @@
 package com.example.pidev.Service.Classe;
 
 
-import com.example.pidev.DAO.Entities.User;
-import com.example.pidev.DAO.Repositories.RoleRepositories;
-import com.example.pidev.DAO.Repositories.UserRepositories;
+import com.example.pidev.Dto.DAO.Entities.User;
+import com.example.pidev.Dto.DAO.Repositories.RoleRepositories;
+import com.example.pidev.Dto.DAO.Repositories.UserRepositories;
 import com.example.pidev.Service.Interface.ISecurity;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

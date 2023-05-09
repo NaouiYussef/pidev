@@ -1,13 +1,10 @@
 package com.example.pidev.RestControllers;
 
-import com.example.pidev.DAO.Entities.Categoryp;
-import com.example.pidev.DAO.Entities.User;
+import com.example.pidev.Dto.DAO.Entities.Categoryp;
 import com.example.pidev.Service.Interface.ICategory;
-import com.example.pidev.Service.Interface.IUser;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController

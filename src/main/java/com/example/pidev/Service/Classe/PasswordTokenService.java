@@ -1,8 +1,8 @@
 package com.example.pidev.Service.Classe;
 
 
-import com.example.pidev.DAO.Entities.RestPasswordToken;
-import com.example.pidev.DAO.Repositories.RestPasswordRepository;
+import com.example.pidev.Dto.DAO.Entities.RestPasswordToken;
+import com.example.pidev.Dto.DAO.Repositories.RestPasswordRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

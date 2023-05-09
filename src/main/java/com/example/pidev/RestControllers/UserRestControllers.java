@@ -1,6 +1,6 @@
 package com.example.pidev.RestControllers;
 
-import com.example.pidev.DAO.Entities.User;
+import com.example.pidev.Dto.DAO.Entities.User;
 import com.example.pidev.Service.Classe.UserService;
 import com.example.pidev.Service.Interface.ISecurity;
 import com.example.pidev.Service.Interface.IUser;

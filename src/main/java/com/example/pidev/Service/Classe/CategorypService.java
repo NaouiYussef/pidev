@@ -1,7 +1,7 @@
 package com.example.pidev.Service.Classe;
 
-import com.example.pidev.DAO.Entities.Categoryp;
-import com.example.pidev.DAO.Repositories.CategorypRepositories;
+import com.example.pidev.Dto.DAO.Entities.Categoryp;
+import com.example.pidev.Dto.DAO.Repositories.CategorypRepositories;
 import com.example.pidev.Service.Interface.ICategory;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

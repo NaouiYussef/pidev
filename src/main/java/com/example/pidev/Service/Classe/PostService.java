@@ -1,12 +1,12 @@
 package com.example.pidev.Service.Classe;
 
 
-import com.example.pidev.DAO.Entities.Post;
-import com.example.pidev.DAO.Entities.Subreddit;
-import com.example.pidev.DAO.Entities.User;
-import com.example.pidev.DAO.Repositories.PostRepository;
-import com.example.pidev.DAO.Repositories.SubredditRepository;
-import com.example.pidev.DAO.Repositories.UserRepositories;
+import com.example.pidev.Dto.DAO.Entities.Post;
+import com.example.pidev.Dto.DAO.Entities.Subreddit;
+import com.example.pidev.Dto.DAO.Entities.User;
+import com.example.pidev.Dto.DAO.Repositories.PostRepository;
+import com.example.pidev.Dto.DAO.Repositories.SubredditRepository;
+import com.example.pidev.Dto.DAO.Repositories.UserRepositories;
 import com.example.pidev.Dto.PostRequest;
 import com.example.pidev.Dto.PostResponse;
 import com.example.pidev.Exceptions.PostNotFoundException;
@@ -18,13 +18,10 @@ import com.example.pidev.Service.Interface.IUser;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

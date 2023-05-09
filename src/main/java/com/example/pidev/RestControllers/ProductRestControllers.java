@@ -1,8 +1,6 @@
 package com.example.pidev.RestControllers;
 
-import com.example.pidev.DAO.Entities.Categoryp;
-import com.example.pidev.DAO.Entities.Product;
-import com.example.pidev.Service.Interface.ICategory;
+import com.example.pidev.Dto.DAO.Entities.Product;
 import com.example.pidev.Service.Interface.IProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

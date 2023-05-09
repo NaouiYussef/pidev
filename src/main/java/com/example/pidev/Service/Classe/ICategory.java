@@ -1,6 +1,6 @@
 package com.example.pidev.Service.Interface;
 
-import com.example.pidev.DAO.Entities.Categoryp;
+import com.example.pidev.Dto.DAO.Entities.Categoryp;
 
 import java.util.List;
 

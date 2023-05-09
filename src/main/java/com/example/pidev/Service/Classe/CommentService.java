@@ -1,14 +1,13 @@
 package com.example.pidev.Service.Classe;
 
 
-import com.example.pidev.DAO.Entities.Comment;
-import com.example.pidev.DAO.Entities.Post;
-import com.example.pidev.DAO.Entities.User;
-import com.example.pidev.DAO.Repositories.CommentRepository;
-import com.example.pidev.DAO.Repositories.PostRepository;
-import com.example.pidev.DAO.Repositories.UserRepositories;
+import com.example.pidev.Dto.DAO.Entities.Comment;
+import com.example.pidev.Dto.DAO.Entities.Post;
+import com.example.pidev.Dto.DAO.Entities.User;
+import com.example.pidev.Dto.DAO.Repositories.CommentRepository;
+import com.example.pidev.Dto.DAO.Repositories.PostRepository;
+import com.example.pidev.Dto.DAO.Repositories.UserRepositories;
 import com.example.pidev.Dto.CommentsDto;
-import com.example.pidev.Dto.SubredditDto;
 import com.example.pidev.Exceptions.PostNotFoundException;
 import com.example.pidev.Mapper.CommentMapper;
 import lombok.AllArgsConstructor;
@@ -18,9 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 

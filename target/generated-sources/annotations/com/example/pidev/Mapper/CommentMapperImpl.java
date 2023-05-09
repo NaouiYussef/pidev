@@ -1,16 +1,16 @@
 package com.example.pidev.Mapper;
 
-import com.example.pidev.DAO.Entities.Comment;
-import com.example.pidev.DAO.Entities.Post;
-import com.example.pidev.DAO.Entities.User;
 import com.example.pidev.Dto.CommentsDto;
+import com.example.pidev.Dto.DAO.Entities.Comment;
+import com.example.pidev.Dto.DAO.Entities.Post;
+import com.example.pidev.Dto.DAO.Entities.User;
 import javax.annotation.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-03T18:29:55+0100",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 1.8.0_60 (Oracle Corporation)"
+    date = "2023-05-05T19:57:09+0100",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 @Component
 public class CommentMapperImpl implements CommentMapper {

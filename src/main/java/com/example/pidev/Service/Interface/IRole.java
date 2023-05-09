@@ -1,7 +1,6 @@
 package com.example.pidev.Service.Interface;
 
-import com.example.pidev.DAO.Entities.Role;
-import com.example.pidev.DAO.Entities.User;
+import com.example.pidev.Dto.DAO.Entities.Role;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.example.pidev.Mapper;
 
 
-import com.example.pidev.DAO.Entities.Post;
-import com.example.pidev.DAO.Entities.Subreddit;
+import com.example.pidev.Dto.DAO.Entities.Post;
+import com.example.pidev.Dto.DAO.Entities.Subreddit;
 import com.example.pidev.Dto.SubredditDto;
 import com.github.marlonlom.utilities.timeago.TimeAgo;
 import org.mapstruct.InheritInverseConfiguration;

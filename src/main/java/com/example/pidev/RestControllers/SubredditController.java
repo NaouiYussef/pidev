@@ -1,11 +1,9 @@
 package com.example.pidev.RestControllers;
 
 ;
-import com.example.pidev.DAO.Entities.Post;
-import com.example.pidev.DAO.Entities.Subreddit;
-import com.example.pidev.DAO.Repositories.SubredditRepository;
+import com.example.pidev.Dto.DAO.Entities.Subreddit;
+import com.example.pidev.Dto.DAO.Repositories.SubredditRepository;
 import com.example.pidev.Dto.SubredditDto;
-import com.example.pidev.Exceptions.PostNotFoundException;
 import com.example.pidev.Exceptions.SubredditNotFoundException;
 import com.example.pidev.Service.Classe.SubredditService;
 import lombok.AllArgsConstructor;

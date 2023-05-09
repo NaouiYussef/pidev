@@ -1,11 +1,11 @@
 package com.example.pidev.RestControllers;
 
-import com.example.pidev.DAO.Entities.Post;
-import com.example.pidev.DAO.Entities.Subreddit;
-import com.example.pidev.DAO.Entities.User;
-import com.example.pidev.DAO.Repositories.PostRepository;
-import com.example.pidev.DAO.Repositories.SubredditRepository;
-import com.example.pidev.DAO.Repositories.UserRepositories;
+import com.example.pidev.Dto.DAO.Entities.Post;
+import com.example.pidev.Dto.DAO.Entities.Subreddit;
+import com.example.pidev.Dto.DAO.Entities.User;
+import com.example.pidev.Dto.DAO.Repositories.PostRepository;
+import com.example.pidev.Dto.DAO.Repositories.SubredditRepository;
+import com.example.pidev.Dto.DAO.Repositories.UserRepositories;
 import com.example.pidev.Dto.PostRequest;
 import com.example.pidev.Dto.PostResponse;
 import com.example.pidev.Exceptions.PostNotFoundException;
@@ -17,14 +17,9 @@ import lombok.AllArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.status;
 

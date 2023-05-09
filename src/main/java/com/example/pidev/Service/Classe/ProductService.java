@@ -1,12 +1,10 @@
 package com.example.pidev.Service.Classe;
 
-import com.example.pidev.DAO.Entities.Attribute;
-import com.example.pidev.DAO.Entities.Product;
-import com.example.pidev.DAO.Entities.ProductDetails;
-import com.example.pidev.DAO.Repositories.AttributeRepositories;
-import com.example.pidev.DAO.Repositories.CategorypRepositories;
-import com.example.pidev.DAO.Repositories.ProductDetailsRepositories;
-import com.example.pidev.DAO.Repositories.ProductRepositories;
+import com.example.pidev.Dto.DAO.Entities.Product;
+import com.example.pidev.Dto.DAO.Entities.ProductDetails;
+import com.example.pidev.Dto.DAO.Repositories.AttributeRepositories;
+import com.example.pidev.Dto.DAO.Repositories.ProductDetailsRepositories;
+import com.example.pidev.Dto.DAO.Repositories.ProductRepositories;
 import com.example.pidev.Service.Interface.IProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

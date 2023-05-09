@@ -1,7 +1,7 @@
 package com.example.pidev.Service.Classe;
 
-import com.example.pidev.DAO.Entities.Subreddit;
-import com.example.pidev.DAO.Repositories.SubredditRepository;
+import com.example.pidev.Dto.DAO.Entities.Subreddit;
+import com.example.pidev.Dto.DAO.Repositories.SubredditRepository;
 import com.example.pidev.Dto.SubredditDto;
 import com.example.pidev.Exceptions.SpringRedditException;
 import com.example.pidev.Mapper.SubredditMapper;

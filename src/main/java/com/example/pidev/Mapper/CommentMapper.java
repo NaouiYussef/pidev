@@ -1,9 +1,9 @@
 package com.example.pidev.Mapper;
 
 
-import com.example.pidev.DAO.Entities.Comment;
-import com.example.pidev.DAO.Entities.Post;
-import com.example.pidev.DAO.Entities.User;
+import com.example.pidev.Dto.DAO.Entities.Comment;
+import com.example.pidev.Dto.DAO.Entities.Post;
+import com.example.pidev.Dto.DAO.Entities.User;
 import com.example.pidev.Dto.CommentsDto;
 import com.github.marlonlom.utilities.timeago.TimeAgo;
 import org.mapstruct.Mapper;
