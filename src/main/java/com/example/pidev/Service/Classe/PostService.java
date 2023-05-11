@@ -88,7 +88,8 @@ public class PostService  {
         postRepository.deleteById(id);
     }
 
-    @Scheduled(cron = "0 0 0 * * ?") // run at midnight every day
+    //@Scheduled(cron = "60 * * * * ?") // run at midnight every day
+    @Scheduled(cron = "*/30 * * * * *")
     public void removeOldPosts() {
         LocalDateTime threshold = LocalDateTime.now().minusDays(15);
         Instant instant = threshold.atZone(ZoneId.systemDefault()).toInstant();
@@ -96,6 +97,7 @@ public class PostService  {
         postRepository.deleteAll(oldPosts);
 
     }
+
 /*
     public void Edit(PostRequest postRequest) {
         User user = userRepositories.findByMail(security.getCurrentUserName());

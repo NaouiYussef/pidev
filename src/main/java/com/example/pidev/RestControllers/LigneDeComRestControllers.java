@@ -31,8 +31,8 @@ public class LigneDeComRestControllers {
     public List<LigneDeCommande> selectAllFront(@PathVariable Long id){
         return sc.selectAll(id);
     }
-    @PostMapping("/deleteLigneDeCommande")
-    public void deleteById(Long id){
+    @DeleteMapping("/deleteLigneDeCommande/{id}")
+    public void deleteById(@PathVariable Long id){
         sc.deleteById(id);
     }
 }

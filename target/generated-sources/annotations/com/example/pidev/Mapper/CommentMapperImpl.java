@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-05-08T15:38:38+0100",
+    date = "2023-05-10T11:00:14+0100",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 1.8.0_60 (Oracle Corporation)"
 )
 @Component
@@ -25,6 +25,7 @@ public class CommentMapperImpl implements CommentMapper {
 
         if ( commentsDto != null ) {
             comment.setText( commentsDto.getText() );
+            comment.setParentCommentId( commentsDto.getParentCommentId() );
         }
         comment.setPost( post );
         comment.setUser( user );
@@ -41,6 +42,7 @@ public class CommentMapperImpl implements CommentMapper {
 
         CommentsDto commentsDto = new CommentsDto();
 
+        commentsDto.setUserName( commentUserUsername( comment ) );
         commentsDto.setId( comment.getId() );
         commentsDto.setCreatedDate( comment.getCreatedDate() );
         commentsDto.setText( comment.getText() );
@@ -48,8 +50,23 @@ public class CommentMapperImpl implements CommentMapper {
         commentsDto.setPostId( comment.getPost().getPostId() );
         commentsDto.setPostName( comment.getPost().getPostName() );
         commentsDto.setDuration( getDuration(commentsDto) );
-        commentsDto.setUserName( comment.getUser().getUsername() );
+        commentsDto.setParentCommentId( comment.getParentCommentId() );
 
         return commentsDto;
+    }
+
+    private String commentUserUsername(Comment comment) {
+        if ( comment == null ) {
+            return null;
+        }
+        User user = comment.getUser();
+        if ( user == null ) {
+            return null;
+        }
+        String username = user.getUsername();
+        if ( username == null ) {
+            return null;
+        }
+        return username;
     }
 }
